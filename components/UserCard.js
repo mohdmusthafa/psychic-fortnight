@@ -39,7 +39,6 @@ function UserCard() {
 const styles = StyleSheet.create({
     card: {
         flexDirection: 'column',
-        marginHorizontal: SIZES.padding,
         marginVertical: 20,
         padding: SIZES.padding,
         width: 350,

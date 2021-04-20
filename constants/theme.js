@@ -11,7 +11,8 @@ export const COLORS = {
     white: "#FFFFFF",
     blue: "#3c4483",
     lightGray: "#838383",
-    transparentGray: "#f3f8fe"
+    transparentGray: "#f3f8fe",
+    transparentGray2: "#e7f1fd"
 };
 
 export const SIZES = {
@@ -31,6 +32,8 @@ export const SIZES = {
     body2: 20,
     body3: 16,
     body4: 14,
+    body5: 12,
+    body6: 10,
 
     // app dimensions
     width,
@@ -47,6 +50,9 @@ export const FONTS = {
     body2: { fontFamily: "Montserrat-Regular", fontSize: SIZES.body2, lineHeight: 30 },
     body3: { fontFamily: "Montserrat-Regular", fontSize: SIZES.body3, lineHeight: 22 },
     body4: { fontFamily: "Montserrat-Regular", fontSize: SIZES.body4, lineHeight: 22 },
+    body5: { fontFamily: "Montserrat-Regular", fontSize: SIZES.body5, lineHeight: 22 },
+    body6: { fontFamily: "Montserrat-Regular", fontSize: SIZES.body6, lineHeight: 22 },
+    
 };
 
 const appTheme = { COLORS, SIZES, FONTS };
