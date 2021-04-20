@@ -39,10 +39,10 @@ const styles = StyleSheet.create({
             width: 0,
             height: 3,
         },
-        shadowOpacity: 0.40,
-        shadowRadius: 5,
+        shadowOpacity: 0.30,
+        shadowRadius: 3,
 
-        elevation: 15,
+        elevation: 6,
     },
     iconContainer: {
         alignItems: 'center',

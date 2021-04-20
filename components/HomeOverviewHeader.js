@@ -25,14 +25,19 @@ const styles = StyleSheet.create({
     overviewHeader: {
         flexDirection: 'row',
         alignItems: 'center',
-        justifyContent: 'space-between'
     },
     overviewTitle: {
+        flex: 1,
         flexDirection: 'row',
+        justifyContent: 'flex-start',
         alignItems: 'center',
+        marginLeft: 30
     },
     overviewDate: {
-        marginHorizontal: 60
+        flex: 1,
+        flexDirection: 'row',
+        justifyContent: 'flex-end',
+        marginRight: 30
     },
     notificationsBadge: {
         width: 8,

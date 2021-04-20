@@ -1,5 +1,6 @@
 import React from 'react';
-import { View, StyleSheet, ScrollView } from 'react-native';
+import { View, StyleSheet } from 'react-native';
+import { ScrollView } from 'react-native-gesture-handler';
 import AntDesign from 'react-native-vector-icons/AntDesign';
 import Feather from 'react-native-vector-icons/Feather';
 import { SIZES } from '../constants';
@@ -8,7 +9,10 @@ import PaymentCard from './PaymentCard';
 
 function Payments(){
     return (
-        <ScrollView contentContainerStyle={{ flexGrow: 1, height: SIZES.height + SIZES.height * 0.3 }}>
+        <ScrollView
+            // contentContainerStyle={{ flexGrow: 1, height: SIZES.height + SIZES.height * 0.3 }}
+            showsVerticalScrollIndicator={false}
+        >
             <PaymentCard
                 icon={() => <AntDesign name="arrowup" size={26} />}
                 type="Sent"

@@ -18,9 +18,11 @@ function Home(){
 
 const styles = StyleSheet.create({
     container: {
+        flex: 1,
         backgroundColor: COLORS.transparentGray,
-        marginHorizontal: SIZES.padding + 8,
-        width: '100%'
+        justifyContent: 'center',
+        alignItems: 'center',
+        width: SIZES.width
     }
 })
 
