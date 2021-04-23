@@ -3,13 +3,20 @@ import { StyleSheet, Text, TouchableOpacity, View } from 'react-native';
 import Fontisto from 'react-native-vector-icons/Fontisto';
 import { COLORS, FONTS } from '../constants/';
 
-function HomeOverviewHeader() {
+function HomeOverviewHeader({ showRecentTransactions }) {
     const [pendingNotifications, setPendingNotifications] = useState(true);
+
+
+    function notificationHandler(){
+        setPendingNotifications(false);
+        showRecentTransactions();
+    }
+
     return (
         <View style={styles.overviewHeader}>
             <View style={styles.overviewTitle}>
                 <Text style={{ marginRight: 15, ...FONTS.h2, fontSize: 24, color: COLORS.blue }}>Overview</Text>
-                <TouchableOpacity onPress={() => setPendingNotifications(state => !state)}>
+                <TouchableOpacity onPress={notificationHandler}>
                     <Fontisto name="bell" size={24} />
                     { pendingNotifications ? <View style={styles.notificationsBadge} /> : null}
                 </TouchableOpacity>

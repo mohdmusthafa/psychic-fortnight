@@ -6,11 +6,15 @@ import UserCard from '../components/UserCard';
 import HomeOverviewHeader from '../components/HomeOverviewHeader';
 import Payments from '../components/Payments';
 
-function Home(){
+function Home({ navigation }){
+
+    function showRecentTransactions(){
+        navigation.navigate("Transactions")
+    }
     return (
         <View style={styles.container}>
             <UserCard />
-            <HomeOverviewHeader />
+            <HomeOverviewHeader showRecentTransactions={showRecentTransactions} />
             <Payments />
         </View>
     )

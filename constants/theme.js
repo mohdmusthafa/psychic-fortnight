@@ -12,7 +12,8 @@ export const COLORS = {
     blue: "#3c4483",
     lightGray: "#838383",
     transparentGray: "#f3f8fe",
-    transparentGray2: "#e7f1fd"
+    transparentGray2: "#e7f1fd",
+    transparentBlue: '#cbcee7',
 };
 
 export const SIZES = {

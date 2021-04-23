@@ -1,6 +1,7 @@
 import React from 'react';
 import { View, Text } from 'react-native';
 import { NavigationContainer } from '@react-navigation/native';
+import { createStackNavigator } from '@react-navigation/stack';
 import { createBottomTabNavigator } from '@react-navigation/bottom-tabs';
 import Ionicons from 'react-native-vector-icons/Ionicons';
 import AntDesign from 'react-native-vector-icons/AntDesign';
@@ -14,6 +15,17 @@ import {
     Profile
 } from '../screens'
 import { COLORS } from '../constants';
+
+const HomeStack = createStackNavigator();
+
+function HomeStackScreen(){
+    return (
+        <HomeStack.Navigator screenOptions={{ headerShown: false }}>
+            <HomeStack.Screen name="Home" component={Home} />
+            <HomeStack.Screen name="Transactions" component={Transactions} />
+        </HomeStack.Navigator>
+    )
+}
 
 const Tab = createBottomTabNavigator();
 
@@ -79,7 +91,7 @@ function AppNavigation() {
                     tabBarLabel: () => null,
                 })}
             >
-                <Tab.Screen name="Home" component={Home} />
+                <Tab.Screen name="Home" component={HomeStackScreen} />
                 <Tab.Screen name="Cards" component={ComingSoon} />
                 <Tab.Screen name="Add" component={ComingSoon} />
                 <Tab.Screen name="Money" component={ComingSoon} />
