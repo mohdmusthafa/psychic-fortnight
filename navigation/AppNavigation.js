@@ -10,7 +10,8 @@ import PlusIcon from '../components/PlusIcon';
 
 import {
     Home,
-    Transactions
+    Transactions,
+    Profile
 } from '../screens'
 import { COLORS } from '../constants';
 
@@ -53,7 +54,7 @@ function AppNavigation() {
                             case "Money":
                                 iconName = "dollar";
                                 break;
-                            case "Transactions":
+                            case "Profile":
                                 iconName = "user"
                                 break;
                             default:
@@ -82,7 +83,7 @@ function AppNavigation() {
                 <Tab.Screen name="Cards" component={ComingSoon} />
                 <Tab.Screen name="Add" component={ComingSoon} />
                 <Tab.Screen name="Money" component={ComingSoon} />
-                <Tab.Screen name="Transactions" component={Transactions} />
+                <Tab.Screen name="Profile" component={Profile} />
             </Tab.Navigator>
         </NavigationContainer>
     )

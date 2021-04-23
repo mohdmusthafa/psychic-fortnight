@@ -1,10 +1,51 @@
-import React from 'react';
+import React, { useState, useEffect } from 'react';
 import { View, Text, Image, StyleSheet, TextInput, TouchableOpacity } from 'react-native';
+import AsyncStorage from '@react-native-async-storage/async-storage';
 import { images, COLORS, FONTS, SIZES } from '../constants'
 import Feather from 'react-native-vector-icons/Feather';
 import Ionicons from 'react-native-vector-icons/Ionicons';
+import SplashScreen from './SplashScreen';
 
 function Login({ navigation }) {
+    const [email, setEmail] = useState("");
+    const [password, setPassword] = useState("");
+    const [isLoading, setIsLoading] = useState(true);
+
+    useEffect(() => {
+        async function checkLogin(){
+            try {
+                const info = await AsyncStorage.getItem("@login");
+                const parsedInfo = JSON.parse(info);
+                if(parsedInfo.logged_in){
+                    setIsLoading(false);
+                    navigation.navigate("App")
+                }
+
+                setIsLoading(false);
+            } catch (err) {
+                console.log(err)
+            }
+        }
+
+        checkLogin();
+    }, [])
+    const submitLogin = async () => {
+        try {
+            const info = JSON.stringify({
+                logged_in: true,
+                login_email: email,
+                logged_in_time: Date.now().toString()
+            })
+            await AsyncStorage.setItem('@login', info);
+            navigation.navigate("App")
+        } catch (err) {
+            console.log(err)
+        }
+    }
+
+    if(isLoading){
+        return <SplashScreen />
+    }
     return (
         <View style={styles.container}>
             <Image source={images.logo} />
@@ -14,19 +55,17 @@ function Login({ navigation }) {
                     <Text style={styles.inputTitle}>Email Address</Text>
                     <View style={styles.inputFieldSection}>
                         <Feather name="mail" size={16} style={styles.inputIcon} />
-                        <TextInput style={styles.inputField} placeholderTextColor="#000000" placeholder="Username@gmail.com" />
+                        <TextInput style={styles.inputField} onChangeText={setEmail} placeholderTextColor="#000000" placeholder="Username@gmail.com" />
                     </View>
                 </View>
                 <View style={[styles.shadow, styles.inputCard, { marginTop: 25 }]}>
                     <Text style={styles.inputTitle}>Password</Text>
                     <View style={styles.inputFieldSection}>
                         <Ionicons name="lock-closed-outline" size={16} style={styles.inputIcon} />
-                        <TextInput secureTextEntry={true} style={styles.inputField} placeholderTextColor="#000000" placeholder="Password" />
+                        <TextInput secureTextEntry={true} onChangeText={setPassword} style={styles.inputField} placeholderTextColor="#000000" placeholder="Password" />
                     </View>
                 </View>
-                <TouchableOpacity style={styles.loginButton} onPress={() => {
-                    navigation.navigate("App")
-                }}>
+                <TouchableOpacity style={styles.loginButton} onPress={submitLogin}>
                     <Text style={styles.loginText}>Login</Text>
                 </TouchableOpacity>
                 <View style={styles.optionsContainer}>
