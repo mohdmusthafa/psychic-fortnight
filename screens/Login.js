@@ -1,34 +1,18 @@
-import React, { useState, useEffect } from 'react';
+import React, { useState, useEffect, useContext } from 'react';
 import { View, Text, Image, StyleSheet, TextInput, TouchableOpacity } from 'react-native';
 import AsyncStorage from '@react-native-async-storage/async-storage';
 import { images, COLORS, FONTS, SIZES } from '../constants'
 import Feather from 'react-native-vector-icons/Feather';
 import Ionicons from 'react-native-vector-icons/Ionicons';
 import SplashScreen from './SplashScreen';
+import { AuthContext } from '../navigation/index';
 
 function Login({ navigation }) {
     const [email, setEmail] = useState("");
     const [password, setPassword] = useState("");
-    const [isLoading, setIsLoading] = useState(true);
 
-    useEffect(() => {
-        async function checkLogin(){
-            try {
-                const info = await AsyncStorage.getItem("@login");
-                const parsedInfo = JSON.parse(info);
-                if(parsedInfo.logged_in){
-                    setIsLoading(false);
-                    navigation.navigate("App")
-                }
+    const user = useContext(AuthContext);
 
-                setIsLoading(false);
-            } catch (err) {
-                console.log(err)
-            }
-        }
-
-        checkLogin();
-    }, [])
     const submitLogin = async () => {
         try {
             const info = JSON.stringify({
@@ -37,15 +21,13 @@ function Login({ navigation }) {
                 logged_in_time: Date.now().toString()
             })
             await AsyncStorage.setItem('@login', info);
-            navigation.navigate("App")
+            console.log(user)
+            user.login()
         } catch (err) {
             console.log(err)
         }
     }
 
-    if(isLoading){
-        return <SplashScreen />
-    }
     return (
         <View style={styles.container}>
             <Image source={images.logo} />

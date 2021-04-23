@@ -1,22 +1,23 @@
-import React from 'react';
-import { View, StyleSheet, Button } from 'react-native';
+import React, { useContext } from 'react';
+import { View, StyleSheet, Button, Text } from 'react-native';
 import AsyncStorage from '@react-native-async-storage/async-storage';
-import { CommonActions } from '@react-navigation/native';
+import { NavigationActions } from 'react-navigation';
+import { AuthContext } from '../navigation/index';
+import { COLORS, FONTS } from '../constants';
 
 function Profile({ navigation }){
+    const user = useContext(AuthContext)
     const logoutHandler = async () => {
         try {
             await AsyncStorage.setItem('@login', '');
-            // navigation.navigate("Auth")
-            navigation.dispatch((state) => {
-                console.log(state.routes)
-            })
+            user.logout()
         } catch (err) {
             console.log(err)   
         }
     }
     return (
         <View style={styles.container}>
+            <Text style={styles.userEmail}>{user.user.login_email}</Text>
             <Button onPress={logoutHandler} title="LOGOUT" />
         </View>
     )
@@ -27,6 +28,11 @@ const styles = StyleSheet.create({
         flex: 1,
         alignItems: 'center',
         justifyContent: 'center'
+    },
+    userEmail: {
+        ...FONTS.h2,
+        color: COLORS.blue,
+        marginBottom: 5
     }
 })
 
